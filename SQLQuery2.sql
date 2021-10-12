@@ -4,7 +4,7 @@ use AppChatUme
 Create table UserAccount
 (
 	idUser Integer identity(0,1)  NOT NULL, UNIQUE (idUser),
-	phoneNumber Varchar(10) NOT NULL,
+	phoneNumber Varchar(10) NOT NULL UNIQUE,
 	password Varchar(16) NULL,
 	createOn Datetime NULL,
 	updateOn Datetime NULL,
@@ -12,10 +12,17 @@ Create table UserAccount
 	sex Bit NULL,
 	birthDay date NULL,
 	email varchar(2000) NULL,
-	Primary Key (idUser)
-   
+	Primary Key (idUser) 
 ) 
 
+create table Friends
+(
+	idUser Integer NOT NULL, UNIQUE (idUser),
+	addDay datetime not null,
+	nickName Nvarchar(200),
+	isActive bit default 1,
+	Primary Key (idUser)
+)
 
 Create table UserAvarta
 (
@@ -26,7 +33,6 @@ Create table UserAvarta
 	isActive Bit Default 1 NULL,
 	Primary Key (idAvarta),
     idUser Integer not null,
-    FOREIGN KEY (idUser) REFERENCES UserAccount(idUser) on update cascade on delete cascade
 ) ;
 
 
@@ -41,7 +47,6 @@ Create table Message
 	IisGim Bit Default 0 NULL,
 	viewOn Datetime NULL,
 	Primary Key (idMessage),
-	FOREIGN KEY (idUser) REFERENCES UserAccount(idUser) on update cascade on delete cascade
 ) ;
 
 
@@ -63,8 +68,6 @@ Create table InfoGroup
 	dateJoin Datetime NULL,
 	isActive Bit Default 1 NULL,
 	Primary Key (idUser,idGroup),
-	FOREIGN KEY (idUser) REFERENCES UserAccount(idUser) on update cascade on delete cascade,
-	FOREIGN KEY (idGroup) REFERENCES GroupChat(idGroup) on update cascade on delete cascade
 ) ;
 
 Create table groupChatMessage
@@ -77,8 +80,7 @@ Create table groupChatMessage
 	createOn Datetime NULL,
 	isGim Bit Default 0 NULL,
 	Primary Key (idMess),
-	FOREIGN KEY (idUser) REFERENCES UserAccount(idUser) on update cascade on delete cascade,
-	FOREIGN KEY (idGroup) REFERENCES GroupChat(idGroup) on update cascade on delete cascade
+
 ) ;
 
 Create table Poster
@@ -91,7 +93,7 @@ Create table Poster
     likeNumber int default 0,
     idUser int not null,
 	Primary Key (idPoster),
-    FOREIGN KEY (idUser) REFERENCES UserAccount(idUser) on update cascade on delete cascade
+
 );
 
 Create table Liked
@@ -103,9 +105,7 @@ Create table Liked
 	dateAction Datetime NOT NULL,
 	updateTime Datetime NULL,
 	Primary Key (idPoster,idUser),
-    FOREIGN KEY (idPoster) REFERENCES Poster(idPoster)  on delete cascade,
-    FOREIGN KEY (idUser) REFERENCES UserAccount(idUser) on update cascade on delete cascade
-) 
+
 
 Create table Comment
 (
@@ -116,9 +116,6 @@ Create table Comment
 	idPoster Integer NOT NULL,
     isActive bit default 1,
 	Primary Key (idComment),
-    FOREIGN KEY (idUser) REFERENCES UserAccount(idUser) on delete cascade,
-    FOREIGN KEY (idPoster) REFERENCES Poster(idPoster) on update cascade on delete cascade
-    
 );
 
 Create table UserNotification

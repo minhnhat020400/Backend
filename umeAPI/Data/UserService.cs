@@ -10,7 +10,7 @@ namespace umeAPI.Data
 {
     public class UserService : UserRepo
     {
-        ChatUmeDTBEntities1 data = new ChatUmeDTBEntities1();
+        ChatUmeDTBEntities2 data = new ChatUmeDTBEntities2();
         public object forgetPassword(string phoneNumber)
         {
             if (IsExistPhoneNumner(phoneNumber))
@@ -48,6 +48,7 @@ namespace umeAPI.Data
                 return usersinfo;
             }
         }
+        
         // =======================
         //hàm này để kiểm tra tài khoàn này có tồn tại không
         //========================
