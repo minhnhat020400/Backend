@@ -16,7 +16,7 @@ Create table UserAccount
 	userName nvarchar(200),
 	Primary Key (idUser) 
 ) 
-alter table AccoutUser
+
 
 
 create table Friends
