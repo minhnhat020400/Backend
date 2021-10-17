@@ -16,6 +16,8 @@ Create table UserAccount
 	userName nvarchar(200),
 	Primary Key (idUser) 
 ) 
+alter table AccoutUser
+
 
 create table Friends
 (
@@ -137,7 +139,7 @@ Create table UserNotification
 -- thêm 1 người dùng
 insert into UserAccount (phoneNumber,password,sex,userName) values ('0866039125','123',1,N'nhất')
 insert into UserAccount (phoneNumber,password,userName) values ('08660325','123',N'long')
-insert into UserAccount (phoneNumber,password,sex,userName) values ('086603925','123',1,N'Khoa loonf')
+insert into UserAccount (phoneNumber,password,sex,userName) values ('0000000000','123',1,N'bin')
 select * from UserAccount
 
 use ChatUmeDTB
