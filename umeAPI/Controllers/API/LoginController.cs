@@ -33,11 +33,19 @@ namespace umeAPI.Controllers.API
                 var c = Uservice.getUser(phoneNumber, password);
                 if (c != null)
                 {
-                    return Json(new { account = c });
+                    return Json(new {
+                        message= "success",
+                        account = c });
                 }
-                else return Json(new { account = "sai mật khẩu" });
+                else return Json(new
+                {
+                    message = "sai mật khẩu",
+                    account =  c});
             }
-            else return Json(new { account = "số điện thoại sai định dạng" });
+            else return Json(new
+            {
+                message = "số điện thoại sai định dạng",
+                account =  new UserAccount()});
         }
         [System.Web.Mvc.Route("api/Login/register")]
         [System.Web.Mvc.HttpPost]
