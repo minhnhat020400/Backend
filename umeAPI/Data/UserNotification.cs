@@ -20,5 +20,6 @@ namespace umeAPI.Data
         public Nullable<System.DateTime> creataOn { get; set; }
         public Nullable<System.DateTime> readOn { get; set; }
         public int idUser { get; set; }
+        public int idPerson { get; set; }
     }
 }

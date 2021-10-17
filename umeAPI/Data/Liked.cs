@@ -14,10 +14,10 @@ namespace umeAPI.Data
     
     public partial class Liked
     {
+        public Nullable<bool> isLike { get; set; }
         public int idPoster { get; set; }
         public int idUser { get; set; }
         public System.DateTime dateAction { get; set; }
         public Nullable<System.DateTime> updateTime { get; set; }
-        public Nullable<bool> isLike { get; set; }
     }
 }

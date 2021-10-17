@@ -10,7 +10,7 @@ namespace umeAPI.Data
 {
     public class UserService : UserRepo
     {
-        ChatUmeDTBEntities2 data = new ChatUmeDTBEntities2();
+        ChatUmeDTBEntities3 data = new ChatUmeDTBEntities3();
         public object forgetPassword(string phoneNumber)
         {
             if (IsExistPhoneNumner(phoneNumber))
@@ -34,8 +34,6 @@ namespace umeAPI.Data
             SqlParameter pass = new SqlParameter("@pass", passWord);
 
             SqlParameter[] sqlParameters = new SqlParameter[] { phone, pass };
-            
-
             var usersinfo = data.UserAccounts.SqlQuery(" select * from UserAccount where phoneNumber = @phone and password =@pass", sqlParameters).FirstOrDefault();
 
             if (!IsExistPhoneNumner(phoneNumber))
@@ -86,7 +84,20 @@ namespace umeAPI.Data
                 return "số điện thoại đã có người đăng ký";
             }
         }
-
+        // tìm người dùng qua số điện thoại
+        public UserAccount SerchUserByPhoneNumber(string phoneNumber)
+        {
+            SqlParameter phone = new SqlParameter("@phone", phoneNumber);
+            var usersinfo = data.UserAccounts.SqlQuery(" select * from UserAccount where phoneNumber = @phone", phone).FirstOrDefault();
+            return usersinfo;
+            
+        }
+        public UserAccount SerchUserByIdUer(int id)
+        {
+            SqlParameter phone = new SqlParameter("@id", id);
+            var usersinfo = data.UserAccounts.SqlQuery(" select * from UserAccount where idUser = @id", phone).FirstOrDefault();
+            return usersinfo;
+        }
         public bool onlineUser(string phoneNumber)
         {
             throw new NotImplementedException();

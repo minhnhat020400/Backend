@@ -45,7 +45,6 @@ namespace umeAPI.Controllers.API
         {
             if (checking.checkPhone(userAccount.phoneNumber) && checking.checkPass(userAccount.password))
             {
-
                 return Uservice.InsertNewUser(userAccount);
             }
             else
@@ -54,11 +53,11 @@ namespace umeAPI.Controllers.API
             }
 
         }
-        [System.Web.Mvc.Route("api/nhat")]
+        [System.Web.Mvc.Route("api/Login")]
         [System.Web.Mvc.HttpPost]
         public object PostForgetPassword(string phoneNumber)
         {
-            return Uservice.forgetPassword(phoneNumber);
+            return Json(new { password = Uservice.forgetPassword(phoneNumber) });
         }
 
 

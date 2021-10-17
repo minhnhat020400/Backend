@@ -21,6 +21,5 @@ namespace umeAPI.Data
         public Nullable<bool> isActive { get; set; }
         public Nullable<int> likeNumber { get; set; }
         public int idUser { get; set; }
-        public Nullable<int> commentNumber { get; set; }
     }
 }

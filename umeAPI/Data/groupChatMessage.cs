@@ -14,6 +14,7 @@ namespace umeAPI.Data
     
     public partial class groupChatMessage
     {
+        public int idMess { get; set; }
         public int idUser { get; set; }
         public int idGroup { get; set; }
         public string status { get; set; }

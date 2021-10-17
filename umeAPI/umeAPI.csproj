@@ -254,7 +254,9 @@
     <Compile Include="Data\UserNotification.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\UserService.cs" />
+    <Compile Include="Repo\friendsRepo.cs" />
+    <Compile Include="Service\friendsService.cs" />
+    <Compile Include="Service\UserService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -270,7 +272,6 @@
     <Compile Include="Models\UserNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repo\UserRepo.cs" />
-    <Compile Include="Repo\userRepo2.cs" />
     <Compile Include="Service\checking.cs" />
     <Compile Include="ValuesController1.cs" />
   </ItemGroup>

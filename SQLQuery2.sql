@@ -1,6 +1,6 @@
 ﻿
 
-use AppChatUme
+use ChatUmeDTB
 Create table UserAccount
 (
 	idUser Integer identity(0,1)  NOT NULL, UNIQUE (idUser),
@@ -9,19 +9,23 @@ Create table UserAccount
 	createOn Datetime NULL,
 	updateOn Datetime NULL,
 	isActive Bit Default 1 NULL,
+	isOnline bit default 0 null,
 	sex Bit NULL,
 	birthDay date NULL,
 	email varchar(2000) NULL,
+	userName nvarchar(200),
 	Primary Key (idUser) 
 ) 
 
 create table Friends
 (
-	idUser Integer NOT NULL, UNIQUE (idUser),
-	addDay datetime not null,
-	nickName Nvarchar(200),
+	idUser Integer NOT NULL,
+	idFriend int not null,
+	addDay datetime default getdate() null,
+	nickName Nvarchar(200) ,
 	isActive bit default 1,
-	Primary Key (idUser)
+
+	Primary Key (idUser,idFriend)
 )
 
 Create table UserAvarta
@@ -106,7 +110,7 @@ Create table Liked
 	updateTime Datetime NULL,
 	Primary Key (idPoster,idUser),
 
-
+)
 Create table Comment
 (
 	idComment Integer  identity(0,1)  NOT NULL,
@@ -126,11 +130,18 @@ Create table UserNotification
 	creataOn Datetime NULL,
 	readOn Datetime NULL,
 	idUser Integer NOT NULL,
+	idPerson int not null,
 	Primary Key (idNotification),
-    FOREIGN KEY (idUser) REFERENCES UserAccount(idUser) on update cascade on delete cascade
+
 ) ;
 -- thêm 1 người dùng
+insert into UserAccount (phoneNumber,password,sex,userName) values ('0866039125','123',1,N'nhất')
+insert into UserAccount (phoneNumber,password,userName) values ('08660325','123',N'long')
+insert into UserAccount (phoneNumber,password,sex,userName) values ('086603925','123',1,N'Khoa loonf')
 select * from UserAccount
+
+use ChatUmeDTB
+insert into friends(idUser,idFriend) values (3,1)
 
 
 

@@ -15,7 +15,8 @@ namespace umeAPI.Data
     public partial class Friend
     {
         public int idUser { get; set; }
-        public System.DateTime addDay { get; set; }
+        public int idFriend { get; set; }
+        public Nullable<System.DateTime> addDay { get; set; }
         public string nickName { get; set; }
         public Nullable<bool> isActive { get; set; }
     }

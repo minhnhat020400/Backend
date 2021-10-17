@@ -14,9 +14,11 @@
   <EntityType Name="Friends">
     <Key>
       <PropertyRef Name="idUser" />
+      <PropertyRef Name="idFriend" />
     </Key>
     <Property Name="idUser" Type="int" Nullable="false" />
-    <Property Name="addDay" Type="datetime" Nullable="false" />
+    <Property Name="idFriend" Type="int" Nullable="false" />
+    <Property Name="addDay" Type="datetime" />
     <Property Name="nickName" Type="nvarchar" MaxLength="200" />
     <Property Name="isActive" Type="bit" />
   </EntityType>
@@ -33,9 +35,9 @@
   </EntityType>
   <EntityType Name="groupChatMessage">
     <Key>
-      <PropertyRef Name="idUser" />
-      <PropertyRef Name="idGroup" />
+      <PropertyRef Name="idMess" />
     </Key>
+    <Property Name="idMess" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idUser" Type="int" Nullable="false" />
     <Property Name="idGroup" Type="int" Nullable="false" />
     <Property Name="status" Type="varchar" MaxLength="20" />
@@ -58,11 +60,11 @@
       <PropertyRef Name="idPoster" />
       <PropertyRef Name="idUser" />
     </Key>
+    <Property Name="isLike" Type="bit" />
     <Property Name="idPoster" Type="int" Nullable="false" />
     <Property Name="idUser" Type="int" Nullable="false" />
     <Property Name="dateAction" Type="datetime" Nullable="false" />
     <Property Name="updateTime" Type="datetime" />
-    <Property Name="isLike" Type="bit" />
   </EntityType>
   <EntityType Name="Message">
     <Key>
@@ -88,7 +90,6 @@
     <Property Name="isActive" Type="bit" />
     <Property Name="likeNumber" Type="int" />
     <Property Name="idUser" Type="int" Nullable="false" />
-    <Property Name="commentNumber" Type="int" />
   </EntityType>
   <EntityType Name="UserAccount">
     <Key>
@@ -100,10 +101,11 @@
     <Property Name="createOn" Type="datetime" />
     <Property Name="updateOn" Type="datetime" />
     <Property Name="isActive" Type="bit" />
+    <Property Name="isOnline" Type="bit" />
     <Property Name="sex" Type="bit" />
-    <Property Name="birthDay" Type="datetime" />
-    <Property Name="email" Type="varchar(max)" />
-    <Property Name="userName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="birthDay" Type="date" />
+    <Property Name="email" Type="varchar" MaxLength="2000" />
+    <Property Name="userName" Type="nvarchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="UserAvarta">
     <Key>
@@ -126,6 +128,7 @@
     <Property Name="creataOn" Type="datetime" />
     <Property Name="readOn" Type="datetime" />
     <Property Name="idUser" Type="int" Nullable="false" />
+    <Property Name="idPerson" Type="int" Nullable="false" />
   </EntityType>
   <EntityContainer Name="ChatUmeDTBModelStoreContainer">
     <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ChatUmeDTBModelStoreContainer" CdmEntityContainer="ChatUmeDTBEntities2">
+  <EntityContainerMapping StorageEntityContainer="ChatUmeDTBModelStoreContainer" CdmEntityContainer="ChatUmeDTBEntities3">
     <EntitySetMapping Name="Comments">
       <EntityTypeMapping TypeName="ChatUmeDTBModel.Comment">
         <MappingFragment StoreEntitySet="Comment">
@@ -9,16 +9,6 @@
           <ScalarProperty Name="content" ColumnName="content" />
           <ScalarProperty Name="idUser" ColumnName="idUser" />
           <ScalarProperty Name="idPoster" ColumnName="idPoster" />
-          <ScalarProperty Name="isActive" ColumnName="isActive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Friends">
-      <EntityTypeMapping TypeName="ChatUmeDTBModel.Friend">
-        <MappingFragment StoreEntitySet="Friends">
-          <ScalarProperty Name="idUser" ColumnName="idUser" />
-          <ScalarProperty Name="addDay" ColumnName="addDay" />
-          <ScalarProperty Name="nickName" ColumnName="nickName" />
           <ScalarProperty Name="isActive" ColumnName="isActive" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -38,6 +28,7 @@
     <EntitySetMapping Name="groupChatMessages">
       <EntityTypeMapping TypeName="ChatUmeDTBModel.groupChatMessage">
         <MappingFragment StoreEntitySet="groupChatMessage">
+          <ScalarProperty Name="idMess" ColumnName="idMess" />
           <ScalarProperty Name="idUser" ColumnName="idUser" />
           <ScalarProperty Name="idGroup" ColumnName="idGroup" />
           <ScalarProperty Name="status" ColumnName="status" />
@@ -60,11 +51,11 @@
     <EntitySetMapping Name="Likeds">
       <EntityTypeMapping TypeName="ChatUmeDTBModel.Liked">
         <MappingFragment StoreEntitySet="Liked">
+          <ScalarProperty Name="isLike" ColumnName="isLike" />
           <ScalarProperty Name="idPoster" ColumnName="idPoster" />
           <ScalarProperty Name="idUser" ColumnName="idUser" />
           <ScalarProperty Name="dateAction" ColumnName="dateAction" />
           <ScalarProperty Name="updateTime" ColumnName="updateTime" />
-          <ScalarProperty Name="isLike" ColumnName="isLike" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -92,7 +83,6 @@
           <ScalarProperty Name="isActive" ColumnName="isActive" />
           <ScalarProperty Name="likeNumber" ColumnName="likeNumber" />
           <ScalarProperty Name="idUser" ColumnName="idUser" />
-          <ScalarProperty Name="commentNumber" ColumnName="commentNumber" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -105,6 +95,7 @@
           <ScalarProperty Name="createOn" ColumnName="createOn" />
           <ScalarProperty Name="updateOn" ColumnName="updateOn" />
           <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="isOnline" ColumnName="isOnline" />
           <ScalarProperty Name="sex" ColumnName="sex" />
           <ScalarProperty Name="birthDay" ColumnName="birthDay" />
           <ScalarProperty Name="email" ColumnName="email" />
@@ -132,6 +123,18 @@
           <ScalarProperty Name="content" ColumnName="content" />
           <ScalarProperty Name="creataOn" ColumnName="creataOn" />
           <ScalarProperty Name="readOn" ColumnName="readOn" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="idPerson" ColumnName="idPerson" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Friends">
+      <EntityTypeMapping TypeName="ChatUmeDTBModel.Friend">
+        <MappingFragment StoreEntitySet="Friends">
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="nickName" ColumnName="nickName" />
+          <ScalarProperty Name="addDay" ColumnName="addDay" />
+          <ScalarProperty Name="idFriend" ColumnName="idFriend" />
           <ScalarProperty Name="idUser" ColumnName="idUser" />
         </MappingFragment>
       </EntityTypeMapping>

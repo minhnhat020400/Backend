@@ -11,15 +11,6 @@
     <Property Name="idPoster" Type="Int32" Nullable="false" />
     <Property Name="isActive" Type="Boolean" />
   </EntityType>
-  <EntityType Name="Friend">
-    <Key>
-      <PropertyRef Name="idUser" />
-    </Key>
-    <Property Name="idUser" Type="Int32" Nullable="false" />
-    <Property Name="addDay" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="nickName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="isActive" Type="Boolean" />
-  </EntityType>
   <EntityType Name="GroupChat">
     <Key>
       <PropertyRef Name="idGroup" />
@@ -33,9 +24,9 @@
   </EntityType>
   <EntityType Name="groupChatMessage">
     <Key>
-      <PropertyRef Name="idUser" />
-      <PropertyRef Name="idGroup" />
+      <PropertyRef Name="idMess" />
     </Key>
+    <Property Name="idMess" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="idUser" Type="Int32" Nullable="false" />
     <Property Name="idGroup" Type="Int32" Nullable="false" />
     <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -58,11 +49,11 @@
       <PropertyRef Name="idPoster" />
       <PropertyRef Name="idUser" />
     </Key>
+    <Property Name="isLike" Type="Boolean" />
     <Property Name="idPoster" Type="Int32" Nullable="false" />
     <Property Name="idUser" Type="Int32" Nullable="false" />
     <Property Name="dateAction" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="updateTime" Type="DateTime" Precision="3" />
-    <Property Name="isLike" Type="Boolean" />
   </EntityType>
   <EntityType Name="Message">
     <Key>
@@ -88,7 +79,6 @@
     <Property Name="isActive" Type="Boolean" />
     <Property Name="likeNumber" Type="Int32" />
     <Property Name="idUser" Type="Int32" Nullable="false" />
-    <Property Name="commentNumber" Type="Int32" />
   </EntityType>
   <EntityType Name="UserAccount">
     <Key>
@@ -100,10 +90,11 @@
     <Property Name="createOn" Type="DateTime" Precision="3" />
     <Property Name="updateOn" Type="DateTime" Precision="3" />
     <Property Name="isActive" Type="Boolean" />
+    <Property Name="isOnline" Type="Boolean" />
     <Property Name="sex" Type="Boolean" />
-    <Property Name="birthDay" Type="DateTime" Precision="3" />
-    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="userName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="birthDay" Type="DateTime" Precision="0" />
+    <Property Name="email" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="userName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="UserAvarta">
     <Key>
@@ -126,10 +117,10 @@
     <Property Name="creataOn" Type="DateTime" Precision="3" />
     <Property Name="readOn" Type="DateTime" Precision="3" />
     <Property Name="idUser" Type="Int32" Nullable="false" />
+    <Property Name="idPerson" Type="Int32" Nullable="false" />
   </EntityType>
-  <EntityContainer Name="ChatUmeDTBEntities2" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="ChatUmeDTBEntities3" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Comments" EntityType="Self.Comment" />
-    <EntitySet Name="Friends" EntityType="Self.Friend" />
     <EntitySet Name="GroupChats" EntityType="Self.GroupChat" />
     <EntitySet Name="groupChatMessages" EntityType="Self.groupChatMessage" />
     <EntitySet Name="InfoGroups" EntityType="Self.InfoGroup" />
@@ -139,5 +130,17 @@
     <EntitySet Name="UserAccounts" EntityType="Self.UserAccount" />
     <EntitySet Name="UserAvartas" EntityType="Self.UserAvarta" />
     <EntitySet Name="UserNotifications" EntityType="Self.UserNotification" />
+    <EntitySet Name="Friends" EntityType="ChatUmeDTBModel.Friend" />
   </EntityContainer>
+  <EntityType Name="Friend">
+    <Key>
+      <PropertyRef Name="idUser" />
+      <PropertyRef Name="idFriend" />
+    </Key>
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+    <Property Name="idFriend" Type="Int32" Nullable="false" />
+    <Property Name="addDay" Type="DateTime" Precision="3" />
+    <Property Name="nickName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="isActive" Type="Boolean" />
+  </EntityType>
 </Schema>

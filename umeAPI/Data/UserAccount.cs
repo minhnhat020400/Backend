@@ -20,6 +20,7 @@ namespace umeAPI.Data
         public Nullable<System.DateTime> createOn { get; set; }
         public Nullable<System.DateTime> updateOn { get; set; }
         public Nullable<bool> isActive { get; set; }
+        public Nullable<bool> isOnline { get; set; }
         public Nullable<bool> sex { get; set; }
         public Nullable<System.DateTime> birthDay { get; set; }
         public string email { get; set; }
