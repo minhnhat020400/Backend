@@ -13,10 +13,10 @@ namespace umeAPI.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ChatUmeDTBEntities3 : DbContext
+    public partial class ChatUmeDTBEntities4 : DbContext
     {
-        public ChatUmeDTBEntities3()
-            : base("name=ChatUmeDTBEntities3")
+        public ChatUmeDTBEntities4()
+            : base("name=ChatUmeDTBEntities4")
         {
         }
     
@@ -26,6 +26,7 @@ namespace umeAPI.Data
         }
     
         public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<Friend> Friends { get; set; }
         public virtual DbSet<GroupChat> GroupChats { get; set; }
         public virtual DbSet<groupChatMessage> groupChatMessages { get; set; }
         public virtual DbSet<InfoGroup> InfoGroups { get; set; }
@@ -35,6 +36,5 @@ namespace umeAPI.Data
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
         public virtual DbSet<UserAvarta> UserAvartas { get; set; }
         public virtual DbSet<UserNotification> UserNotifications { get; set; }
-        public virtual DbSet<Friend> Friends { get; set; }
     }
 }

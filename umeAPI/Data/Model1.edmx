@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ChatUmeDTBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ChatUmeDTBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="idComment" />
@@ -148,7 +148,8 @@
           <EntitySet Name="UserAvarta" EntityType="Self.UserAvarta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserNotification" EntityType="Self.UserNotification" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChatUmeDTBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -161,6 +162,17 @@
           <Property Name="content" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="idUser" Type="Int32" Nullable="false" />
           <Property Name="idPoster" Type="Int32" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Friend">
+          <Key>
+            <PropertyRef Name="idUser" />
+            <PropertyRef Name="idFriend" />
+          </Key>
+          <Property Name="idUser" Type="Int32" Nullable="false" />
+          <Property Name="idFriend" Type="Int32" Nullable="false" />
+          <Property Name="addDay" Type="DateTime" Precision="3" />
+          <Property Name="nickName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="isActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="GroupChat">
@@ -271,8 +283,9 @@
           <Property Name="idUser" Type="Int32" Nullable="false" />
           <Property Name="idPerson" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="ChatUmeDTBEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ChatUmeDTBEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Friends" EntityType="Self.Friend" />
           <EntitySet Name="GroupChats" EntityType="Self.GroupChat" />
           <EntitySet Name="groupChatMessages" EntityType="Self.groupChatMessage" />
           <EntitySet Name="InfoGroups" EntityType="Self.InfoGroup" />
@@ -282,25 +295,13 @@
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccount" />
           <EntitySet Name="UserAvartas" EntityType="Self.UserAvarta" />
           <EntitySet Name="UserNotifications" EntityType="Self.UserNotification" />
-          <EntitySet Name="Friends" EntityType="ChatUmeDTBModel.Friend" />
         </EntityContainer>
-        <EntityType Name="Friend">
-          <Key>
-            <PropertyRef Name="idUser" />
-            <PropertyRef Name="idFriend" />
-          </Key>
-          <Property Name="idUser" Type="Int32" Nullable="false" />
-          <Property Name="idFriend" Type="Int32" Nullable="false" />
-          <Property Name="addDay" Type="DateTime" Precision="3" />
-          <Property Name="nickName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="isActive" Type="Boolean" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ChatUmeDTBModelStoreContainer" CdmEntityContainer="ChatUmeDTBEntities3">
+        <EntityContainerMapping StorageEntityContainer="ChatUmeDTBModelStoreContainer" CdmEntityContainer="ChatUmeDTBEntities4">
           <EntitySetMapping Name="Comments">
             <EntityTypeMapping TypeName="ChatUmeDTBModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
@@ -309,6 +310,17 @@
                 <ScalarProperty Name="content" ColumnName="content" />
                 <ScalarProperty Name="idUser" ColumnName="idUser" />
                 <ScalarProperty Name="idPoster" ColumnName="idPoster" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Friends">
+            <EntityTypeMapping TypeName="ChatUmeDTBModel.Friend">
+              <MappingFragment StoreEntitySet="Friends">
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="idFriend" ColumnName="idFriend" />
+                <ScalarProperty Name="addDay" ColumnName="addDay" />
+                <ScalarProperty Name="nickName" ColumnName="nickName" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -425,17 +437,6 @@
                 <ScalarProperty Name="readOn" ColumnName="readOn" />
                 <ScalarProperty Name="idUser" ColumnName="idUser" />
                 <ScalarProperty Name="idPerson" ColumnName="idPerson" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Friends">
-            <EntityTypeMapping TypeName="ChatUmeDTBModel.Friend">
-              <MappingFragment StoreEntitySet="Friends">
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="nickName" ColumnName="nickName" />
-                <ScalarProperty Name="addDay" ColumnName="addDay" />
-                <ScalarProperty Name="idFriend" ColumnName="idFriend" />
-                <ScalarProperty Name="idUser" ColumnName="idUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
