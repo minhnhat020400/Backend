@@ -207,52 +207,52 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Data\Comment.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Model22.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Friend.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Model22.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\GroupChat.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Model22.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\groupChatMessage.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Model22.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\InfoGroup.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Model22.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Liked.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Model22.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Message.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Model22.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Model.Context.cs">
+    <Compile Include="Data\Model22.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.Context.tt</DependentUpon>
+      <DependentUpon>Model22.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Model.cs">
+    <Compile Include="Data\Model22.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Model22.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Model.Designer.cs">
+    <Compile Include="Data\Model22.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model.edmx</DependentUpon>
+      <DependentUpon>Model22.edmx</DependentUpon>
     </Compile>
     <Compile Include="Data\Poster.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Model22.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\UserAccount.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Model22.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\UserAvarta.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Model22.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\UserNotification.cs">
-      <DependentUpon>Model.tt</DependentUpon>
+      <DependentUpon>Model22.tt</DependentUpon>
     </Compile>
     <Compile Include="Repo\friendsRepo.cs" />
     <Compile Include="Service\friendsService.cs" />
@@ -281,15 +281,15 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Data\Model.Context.tt">
+    <Content Include="Data\Model22.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
+      <DependentUpon>Model22.edmx</DependentUpon>
+      <LastGenOutput>Model22.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Data\Model.tt">
+    <Content Include="Data\Model22.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model.edmx</DependentUpon>
-      <LastGenOutput>Model.cs</LastGenOutput>
+      <DependentUpon>Model22.edmx</DependentUpon>
+      <LastGenOutput>Model22.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -316,12 +316,12 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include=".editorconfig" />
-    <EntityDeploy Include="Data\Model.edmx">
+    <EntityDeploy Include="Data\Model22.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model22.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Data\Model.edmx.diagram">
-      <DependentUpon>Model.edmx</DependentUpon>
+    <Content Include="Data\Model22.edmx.diagram">
+      <DependentUpon>Model22.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

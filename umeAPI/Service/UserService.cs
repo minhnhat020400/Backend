@@ -10,7 +10,7 @@ namespace umeAPI.Data
 {
     public class UserService : UserRepo
     {
-        ChatUmeDTBEntities3 data = new ChatUmeDTBEntities3();
+        ChatUmeDTBEntities5 data = new ChatUmeDTBEntities5();
         public object forgetPassword(string phoneNumber)
         {
             if (IsExistPhoneNumner(phoneNumber))
