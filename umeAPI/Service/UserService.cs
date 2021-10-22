@@ -63,13 +63,14 @@ namespace umeAPI.Data
         // =======================
         //hàm này để thêm tài khoản
         //========================
-        public object InsertNewUser(UserAccount userAccount)
+        public string InsertNewUser(UserAccount userAccount)
         {
             SqlParameter phoneNumber = new SqlParameter("@phoneNumber", userAccount.phoneNumber);
             SqlParameter createOn = new SqlParameter("@createOn", DateTime.Now);
             SqlParameter updateOn = new SqlParameter("@updateOn", DateTime.Now);
             SqlParameter sex = new SqlParameter("@sex", userAccount.sex);
             SqlParameter password = new SqlParameter("@password", userAccount.password);
+            SqlParameter email = new SqlParameter("@email", userAccount.email);
             SqlParameter userName = new SqlParameter("@userName", userAccount.userName);
 
             SqlParameter[] sqlParameters = new SqlParameter[] { phoneNumber, createOn, updateOn, sex, password, userName };
@@ -77,8 +78,10 @@ namespace umeAPI.Data
             {
                 int isInsert = data.Database.
                     ExecuteSqlCommand
-                    ("insert into UserAccount (phoneNumber,createOn,updateOn,sex,password,userName) values ( @phoneNumber,@createOn,@updateOn,@sex,@password,@userName)", sqlParameters);
-                return isInsert;
+                    ("insert into UserAccount (phoneNumber,createOn,updateOn,sex,password,emai,userName) values ( @phoneNumber,@createOn,@updateOn,@sex,@password,@email,@userName)", sqlParameters);
+                if (isInsert == 1)
+                    return "success";
+                else return "fail";
             }
             else {
                 return "số điện thoại đã có người đăng ký";
@@ -112,6 +115,8 @@ namespace umeAPI.Data
         {
             throw new NotImplementedException();
         }
+
+
 
     }
 }

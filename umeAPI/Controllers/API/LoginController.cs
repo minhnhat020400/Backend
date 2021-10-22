@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,22 +55,46 @@ namespace umeAPI.Controllers.API
         {
             if (checking.checkPhone(userAccount.phoneNumber) && checking.checkPass(userAccount.password))
             {
-                return Uservice.InsertNewUser(userAccount);
+
+                return Json(new { message = Uservice.InsertNewUser(userAccount)});
             }
             else
             {
                 return Json(new { 
-                    account = "số điện thoại sai định dạng" 
+                    message = "số điện thoại sai định dạng" 
+
                 });
             }
 
         }
-        [System.Web.Mvc.Route("api/Login")]
+        [System.Web.Mvc.Route("api/Login/forgetpassword")]
         [System.Web.Mvc.HttpPost]
         public object PostForgetPassword(string phoneNumber)
         {
             return Json(new { password = Uservice.forgetPassword(phoneNumber) });
         }
+        //[System.Web.Mvc.HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+
+        //    }
+        //    var result = await UserManager.ChangePhoneNumberAsync(User.Identity.GetUserId(), model.PhoneNumber, model.Code);
+        //    if (result.Succeeded)
+        //    {
+        //        var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+        //        if (user != null)
+        //        {
+
+        //        }
+        //        return
+        //    }
+        //    If we got this far, something failed, redisplay form
+        //    ModelState.AddModelError("", "Failed to verify phone");
+        //    return
+        //}
 
 
     }

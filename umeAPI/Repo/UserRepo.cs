@@ -9,7 +9,7 @@ namespace umeAPI.Repo
 {
     public interface UserRepo
     {
-        object InsertNewUser(UserAccount userAccount);
+        string InsertNewUser(UserAccount userAccount);
         object getUser(string phoneNumber,string passWord);
         bool onlineUser(string phoneNumber);
         object forgetPassword(string phoneNumber);
