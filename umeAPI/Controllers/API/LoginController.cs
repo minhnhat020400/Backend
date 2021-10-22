@@ -57,7 +57,9 @@ namespace umeAPI.Controllers.API
             }
             else
             {
-                return Json(new { account = "số điện thoại sai định dạng" });
+                return Json(new { 
+                    account = "số điện thoại sai định dạng" 
+                });
             }
 
         }
