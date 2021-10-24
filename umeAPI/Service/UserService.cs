@@ -73,7 +73,7 @@ namespace umeAPI.Data
             SqlParameter email = new SqlParameter("@email", userAccount.email);
             SqlParameter userName = new SqlParameter("@userName", userAccount.userName);
 
-            SqlParameter[] sqlParameters = new SqlParameter[] { phoneNumber, createOn, updateOn, sex, password, userName };
+            SqlParameter[] sqlParameters = new SqlParameter[] { phoneNumber, createOn, updateOn, sex, password, email, userName };
             if (!IsExistPhoneNumner(userAccount.phoneNumber))
             {
                 int isInsert = data.Database.
@@ -125,10 +125,10 @@ namespace umeAPI.Data
 
         public string updateAvatar(int id, string url)
         {
-            SqlParameter iduser = new SqlParameter("@id",id);
-            SqlParameter urlAvarta = new SqlParameter("@url", url);
+            SqlParameter iduser = new SqlParameter("@iduser", id);
+            SqlParameter urlAvarta = new SqlParameter("@urlAvarta", url);
             SqlParameter[] user = new SqlParameter[] {urlAvarta,iduser};
-            int result = data.Database.ExecuteSqlCommand("update UserAccount set urlAvarta=@url where idUser=@ id");
+            int result = data.Database.ExecuteSqlCommand("update UserAccount set urlAvarta=@urlAvarta where idUser=@iduser", user);
             if (result == 1)
             {
                 return "success";
