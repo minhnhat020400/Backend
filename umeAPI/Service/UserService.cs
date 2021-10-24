@@ -116,7 +116,24 @@ namespace umeAPI.Data
             throw new NotImplementedException();
         }
 
+        private readonly Random _random = new Random();
+     
+        public int RandomNumber(int min, int max)
+        {
+            return _random.Next(min, max);
+        }
 
-
+        public string updateAvatar(int id, string url)
+        {
+            SqlParameter iduser = new SqlParameter("@id",id);
+            SqlParameter urlAvarta = new SqlParameter("@url", url);
+            SqlParameter[] user = new SqlParameter[] {urlAvarta,iduser};
+            int result = data.Database.ExecuteSqlCommand("update UserAccount set urlAvarta=@url where idUser=@ id");
+            if (result == 1)
+            {
+                return "success";
+            }
+            else return "failt";
+        }
     }
 }

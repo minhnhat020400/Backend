@@ -256,7 +256,6 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\API\LoginController.cs" />
     <Compile Include="Controllers\API\MainController.cs" />
-    <Compile Include="Controllers\API\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Data\Comment.cs">
@@ -301,13 +300,11 @@
     <Compile Include="Data\UserAccount.cs">
       <DependentUpon>Model22.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\UserAvarta.cs">
-      <DependentUpon>Model22.tt</DependentUpon>
-    </Compile>
     <Compile Include="Data\UserNotification.cs">
       <DependentUpon>Model22.tt</DependentUpon>
     </Compile>
     <Compile Include="Repo\friendsRepo.cs" />
+    <Compile Include="Service\Authentication.cs" />
     <Compile Include="Service\friendsService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="Global.asax.cs">

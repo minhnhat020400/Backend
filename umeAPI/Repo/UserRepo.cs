@@ -15,5 +15,7 @@ namespace umeAPI.Repo
         object forgetPassword(string phoneNumber);
         object sendEmail(string email);
         object updateUser(string phoneNumer);
+        string updateAvatar(int id, string url);
+        
     }
 }

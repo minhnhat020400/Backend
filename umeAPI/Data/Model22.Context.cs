@@ -34,7 +34,6 @@ namespace umeAPI.Data
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Poster> Posters { get; set; }
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
-        public virtual DbSet<UserAvarta> UserAvartas { get; set; }
         public virtual DbSet<UserNotification> UserNotifications { get; set; }
     }
 }

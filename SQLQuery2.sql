@@ -12,11 +12,13 @@ Create table UserAccount
 	isOnline bit default 0 null,
 	sex Bit NULL,
 	birthDay date NULL,
-	email varchar(2000) NULL,
+	email varchar(max) NULL,
+	urlAvarta Varchar(max) NULL,
 	userName nvarchar(200),
 	Primary Key (idUser) 
 ) 
-
+alter table UserAccount
+add  urlAvarta Varchar(max) default 'https://portal.staralliance.com/cms/aux-pictures/prototype-images/avatar-default.png/@@images/image.png' NULL  
 
 
 create table Friends
@@ -29,17 +31,6 @@ create table Friends
 
 	Primary Key (idUser,idFriend)
 )
-
-Create table UserAvarta
-(
-	idAvarta Integer identity(0,1)  NOT NULL,
-	url Varchar(200) NULL,
-	createOn Datetime NULL,
-	updateOn Datetime NULL,
-	isActive Bit Default 1 NULL,
-	Primary Key (idAvarta),
-    idUser Integer not null,
-) ;
 
 
 Create table Message

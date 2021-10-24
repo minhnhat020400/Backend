@@ -73,28 +73,20 @@ namespace umeAPI.Controllers.API
         {
             return Json(new { password = Uservice.forgetPassword(phoneNumber) });
         }
-        //[System.Web.Mvc.HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
+        [System.Web.Mvc.Route("api/Login/updateAvertar")]
+        [System.Web.Mvc.HttpPut]
+        public string PutAvarta(int idUser, string urlAvarta)
+        {
+            try
+            {
+                return Uservice.updateAvatar(idUser, urlAvarta);
+            }
+            catch (Exception)
+            {
 
-        //    }
-        //    var result = await UserManager.ChangePhoneNumberAsync(User.Identity.GetUserId(), model.PhoneNumber, model.Code);
-        //    if (result.Succeeded)
-        //    {
-        //        var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-        //        if (user != null)
-        //        {
-
-        //        }
-        //        return
-        //    }
-        //    If we got this far, something failed, redisplay form
-        //    ModelState.AddModelError("", "Failed to verify phone");
-        //    return
-        //}
+                return "failt";
+            }
+        }
 
     }
 }

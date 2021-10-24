@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ChatUmeDTBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ChatUmeDTBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="idComment" />
@@ -111,17 +111,8 @@
           <Property Name="birthDay" Type="date" />
           <Property Name="email" Type="varchar" MaxLength="2000" />
           <Property Name="userName" Type="nvarchar" MaxLength="200" />
-        </EntityType>
-        <EntityType Name="UserAvarta">
-          <Key>
-            <PropertyRef Name="idAvarta" />
-          </Key>
-          <Property Name="idAvarta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="url" Type="varchar" MaxLength="200" />
-          <Property Name="createOn" Type="datetime" />
-          <Property Name="updateOn" Type="datetime" />
-          <Property Name="isActive" Type="bit" />
-          <Property Name="idUser" Type="int" Nullable="false" />
+          <Property Name="urlAvarta" Type="varchar(max)" />
+          <Property Name="code" Type="int" />
         </EntityType>
         <EntityType Name="UserNotification">
           <Key>
@@ -145,11 +136,9 @@
           <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Poster" EntityType="Self.Poster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserAvarta" EntityType="Self.UserAvarta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserNotification" EntityType="Self.UserNotification" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChatUmeDTBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -259,17 +248,8 @@
           <Property Name="birthDay" Type="DateTime" Precision="0" />
           <Property Name="email" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="userName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="UserAvarta">
-          <Key>
-            <PropertyRef Name="idAvarta" />
-          </Key>
-          <Property Name="idAvarta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="createOn" Type="DateTime" Precision="3" />
-          <Property Name="updateOn" Type="DateTime" Precision="3" />
-          <Property Name="isActive" Type="Boolean" />
-          <Property Name="idUser" Type="Int32" Nullable="false" />
+          <Property Name="urlAvarta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="Int32" />
         </EntityType>
         <EntityType Name="UserNotification">
           <Key>
@@ -293,7 +273,6 @@
           <EntitySet Name="Messages" EntityType="Self.Message" />
           <EntitySet Name="Posters" EntityType="Self.Poster" />
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccount" />
-          <EntitySet Name="UserAvartas" EntityType="Self.UserAvarta" />
           <EntitySet Name="UserNotifications" EntityType="Self.UserNotification" />
         </EntityContainer>
       </Schema>
@@ -401,6 +380,8 @@
           <EntitySetMapping Name="UserAccounts">
             <EntityTypeMapping TypeName="ChatUmeDTBModel.UserAccount">
               <MappingFragment StoreEntitySet="UserAccount">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="urlAvarta" ColumnName="urlAvarta" />
                 <ScalarProperty Name="idUser" ColumnName="idUser" />
                 <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
                 <ScalarProperty Name="password" ColumnName="password" />
@@ -412,18 +393,6 @@
                 <ScalarProperty Name="birthDay" ColumnName="birthDay" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="userName" ColumnName="userName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserAvartas">
-            <EntityTypeMapping TypeName="ChatUmeDTBModel.UserAvarta">
-              <MappingFragment StoreEntitySet="UserAvarta">
-                <ScalarProperty Name="idAvarta" ColumnName="idAvarta" />
-                <ScalarProperty Name="url" ColumnName="url" />
-                <ScalarProperty Name="createOn" ColumnName="createOn" />
-                <ScalarProperty Name="updateOn" ColumnName="updateOn" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="idUser" ColumnName="idUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
