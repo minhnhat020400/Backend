@@ -116,12 +116,7 @@ namespace umeAPI.Data
             throw new NotImplementedException();
         }
 
-        private readonly Random _random = new Random();
-     
-        public int RandomNumber(int min, int max)
-        {
-            return _random.Next(min, max);
-        }
+        
 
         public string updateAvatar(int id, string url)
         {
@@ -135,5 +130,34 @@ namespace umeAPI.Data
             }
             else return "failt";
         }
+
+        public string updateCode(int id, int code)
+        {
+            SqlParameter iduser = new SqlParameter("@iduser", id);
+            SqlParameter urlAvarta = new SqlParameter("@urlAvarta", code);
+            SqlParameter[] user = new SqlParameter[] { urlAvarta, iduser };
+            int result = data.Database.ExecuteSqlCommand("update UserAccount set urlAvarta=@urlAvarta where idUser=@iduser", user);
+            if (result == 1)
+            {
+                return "success";
+            }
+            else return "failt";
+        }
+
+        public object getcode(int id)
+        {
+            if (id!=null) {
+                SqlParameter phone = new SqlParameter("@phone", id);
+                var userPhone = data.UserAccounts.SqlQuery("select code from UserAccount where idUser = @phone", phone).FirstOrDefault();
+                if (userPhone != null)
+                {
+                    return userPhone;
+                }
+                else return
+                        userPhone;
+            }
+            return null;
+        }
+
     }
 }

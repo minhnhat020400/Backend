@@ -31,5 +31,10 @@ namespace umeAPI.Service
             }
             else return true;
         }
+        private readonly Random _random = new Random();
+        public  int RandomNumber()
+        {
+            return _random.Next(100000, 999999);
+        }
     }
 }

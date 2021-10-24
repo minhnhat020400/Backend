@@ -9,6 +9,9 @@ namespace umeAPI.Service
 {
     public class Authentication
     {
+        
+
+        
         public static void sendCodeByEmail(string toEmail, string title, string contain)
         {
             string email = "minhnhat020400@gmail.com";

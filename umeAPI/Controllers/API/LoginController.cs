@@ -32,61 +32,84 @@ namespace umeAPI.Controllers.API
         {
             if (checking.checkPhone(phoneNumber))
             {
+
                 var c = Uservice.getUser(phoneNumber, password);
                 if (c != null)
                 {
                     return Json(new {
-                        message= "success",
+                        message = "success",
                         account = c });
                 }
                 else return Json(new
                 {
                     message = "sai mật khẩu",
-                    account =  c});
+                    account = c });
             }
             else return Json(new
             {
                 message = "số điện thoại sai định dạng",
-                account =  new UserAccount()});
+                account = new UserAccount() });
         }
+        // api đăng ký số điện thoại
         [System.Web.Mvc.Route("api/Login/register")]
         [System.Web.Mvc.HttpPost]
         public object PostRegister(UserAccount userAccount)
         {
             if (checking.checkPhone(userAccount.phoneNumber) && checking.checkPass(userAccount.password))
             {
-
-                return Json(new { message = Uservice.InsertNewUser(userAccount)});
+                var result = Uservice.InsertNewUser(userAccount);
+                if (result != null) {
+                    return Json(new 
+                    {
+                        message ="success",
+                      account = result
+                    });
+                }
+                else
+                    return Json(new
+                    {
+                        message = "failt",
+                        account = result
+                    });
             }
             else
             {
-                return Json(new { 
-                    message = "số điện thoại sai định dạng" 
-
+                return Json(new {
+                    message = "số điện thoại sai định dạng",
+                    account= new UserAccount()
                 });
             }
 
         }
+
+        //api quên mật khẩu
+
         [System.Web.Mvc.Route("api/Login/forgetpassword")]
         [System.Web.Mvc.HttpPost]
         public object PostForgetPassword(string phoneNumber)
         {
             return Json(new { password = Uservice.forgetPassword(phoneNumber) });
         }
+
+        // api cập nhật hình ảnh
+
         [System.Web.Mvc.Route("api/Login/updateAvertar")]
         [System.Web.Mvc.HttpPut]
-        public string PutAvarta(int idUser, string urlAvarta)
+        public object PutAvarta(int idUser, string urlAvarta)
         {
             try
             {
-                return Uservice.updateAvatar(idUser, urlAvarta);
+                return Json(new {
+                    message =  Uservice.updateAvatar(idUser, urlAvarta)
+                });
             }
             catch (Exception)
             {
 
-                return "failt";
+                return Json(new {message= "failt" }) ;
             }
         }
+
 
     }
 }
