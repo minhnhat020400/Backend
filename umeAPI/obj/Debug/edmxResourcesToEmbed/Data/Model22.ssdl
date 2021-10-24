@@ -104,9 +104,9 @@
     <Property Name="isOnline" Type="bit" />
     <Property Name="sex" Type="bit" />
     <Property Name="birthDay" Type="date" />
-    <Property Name="email" Type="varchar" MaxLength="2000" />
-    <Property Name="userName" Type="nvarchar" MaxLength="200" />
+    <Property Name="email" Type="varchar(max)" />
     <Property Name="urlAvarta" Type="varchar(max)" />
+    <Property Name="userName" Type="nvarchar" MaxLength="200" />
     <Property Name="code" Type="int" />
   </EntityType>
   <EntityType Name="UserNotification">

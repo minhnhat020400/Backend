@@ -12,7 +12,7 @@ namespace umeAPI.Controllers.API
     public class MainController : ApiController
     {
         checking checking = new checking();
-        UserService userService = new UserService();
+
         friendsService fService = new friendsService();
         // GET: Main
         [System.Web.Mvc.Route("api/Main")]

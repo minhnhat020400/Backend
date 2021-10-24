@@ -16,8 +16,8 @@ namespace umeAPI.Repo
         object sendEmail(string email);
         object updateUser(string phoneNumer);
         string updateAvatar(int id, string url);
-        string updateCode(int id ,int code);
-        object getcode(int id); 
+        bool IsExistPhoneNumner(string phoneNumber);
+        bool IsExistEmail(string Email);
 
     }
 }

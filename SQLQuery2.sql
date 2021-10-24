@@ -10,16 +10,15 @@ Create table UserAccount
 	updateOn Datetime NULL,
 	isActive Bit Default 1 NULL,
 	isOnline bit default 0 null,
-	sex Bit NULL,
+	sex Bit NULL default 1,
 	birthDay date NULL,
 	email varchar(max) NULL,
 	urlAvarta Varchar(max) NULL,
 	userName nvarchar(200),
-	Primary Key (idUser) 
+	Primary Key (idUser),
+	code int default 131001
 ) 
-alter table UserAccount
-add  urlAvarta Varchar(max) default 'https://portal.staralliance.com/cms/aux-pictures/prototype-images/avatar-default.png/@@images/image.png' NULL  
-
+ 
 
 create table Friends
 (
@@ -134,6 +133,7 @@ insert into UserAccount (phoneNumber,password,sex,userName) values ('0000000000'
 select * from UserAccount
 
 use ChatUmeDTB
+select * from UserAccount
 insert into friends(idUser,idFriend) values (3,1)
 
 

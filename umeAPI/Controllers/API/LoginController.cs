@@ -25,65 +25,108 @@ namespace umeAPI.Controllers.API
         checking checking = new checking();
 
         // GET: api/Login
-        // API khi đăng nhập
+        // API khi đăng nhập bằng số điện thoại
         [System.Web.Mvc.Route("api/Login/getuser")]
         [System.Web.Mvc.HttpGet]
         public object GetUser(string phoneNumber, string password)
         {
             if (checking.checkPhone(phoneNumber))
             {
-
-                var c = Uservice.getUser(phoneNumber, password);
-                if (c != null)
+                if (Uservice.IsExistPhoneNumner(phoneNumber))
                 {
-                    return Json(new {
-                        message = "success",
-                        account = c });
+                    var c = Uservice.getUser(phoneNumber, password);
+                    if (c != null)
+                    {
+                        return Json(new
+                        {
+                            message = "success",
+                            account = c
+                        });
+                    }
+                    else return Json(new
+                    {
+                        message = "sai mật khẩu",
+                        account = c
+                    });
                 }
-                else return Json(new
-                {
-                    message = "sai mật khẩu",
-                    account = c });
+                else
+                    return Json(new
+                    {
+                        message = "tài khoản không tồn tại",
+                        account = new UserAccount()
+                    });
             }
             else return Json(new
             {
                 message = "số điện thoại sai định dạng",
                 account = new UserAccount() });
         }
+
+
+        // API khi đăng nhập bằng Email
+        [System.Web.Mvc.Route("api/Login/getuserByEmail")]
+        [System.Web.Mvc.HttpGet]
+        public  object GetUserbyEmail(string email, string password)
+        {
+            if (checking.isEmail(email))
+            {
+                if (Uservice.IsExistEmail(email))
+                {
+                    var c = Uservice.getUserByEmail(email, password);
+                    if (c != null)
+                    {
+                        return Json(new
+                        {
+                            message = "success",
+                            account = c
+                        });
+                    }
+                    else return Json(new
+                    {
+                        message = "sai mật khẩu",
+                        account = c
+                    });
+                }
+                else return Json(new
+                {
+                    message = "Enail đã tồn tại",
+                    account = new UserAccount()
+                });
+
+            }
+            else return Json(new
+            {
+                message = "số điện thoại sai định dạng",
+                account = new UserAccount()
+            });
+        }
+
+
         // api đăng ký số điện thoại
         [System.Web.Mvc.Route("api/Login/register")]
         [System.Web.Mvc.HttpPost]
         public object PostRegister(UserAccount userAccount)
         {
+            if (userAccount.sex == null || userAccount.phoneNumber == null || userAccount.password == null || userAccount.email == null || userAccount.userName == null)
+                return "bạn chưa nhập đủ thông tin cần thiết";
             if (checking.checkPhone(userAccount.phoneNumber) && checking.checkPass(userAccount.password))
             {
                 var result = Uservice.InsertNewUser(userAccount);
-                if (result != null) {
                     return Json(new 
                     {
-                        message ="success",
-                      account = result
-                    });
-                }
-                else
-                    return Json(new
-                    {
-                        message = "failt",
-                        account = result
+                        message = result
                     });
             }
             else
             {
                 return Json(new {
-                    message = "số điện thoại sai định dạng",
-                    account= new UserAccount()
+                    message = "số điện thoại sai định dạng"
                 });
             }
-
         }
 
-        //api quên mật khẩu
 
+        //api quên mật khẩu
         [System.Web.Mvc.Route("api/Login/forgetpassword")]
         [System.Web.Mvc.HttpPost]
         public object PostForgetPassword(string phoneNumber)
@@ -91,8 +134,8 @@ namespace umeAPI.Controllers.API
             return Json(new { password = Uservice.forgetPassword(phoneNumber) });
         }
 
-        // api cập nhật hình ảnh
 
+        // api cập nhật hình ảnh
         [System.Web.Mvc.Route("api/Login/updateAvertar")]
         [System.Web.Mvc.HttpPut]
         public object PutAvarta(int idUser, string urlAvarta)

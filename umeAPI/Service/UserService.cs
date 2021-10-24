@@ -11,6 +11,7 @@ namespace umeAPI.Data
     public class UserService : UserRepo
     {
         ChatUmeDTBEntities5 data = new ChatUmeDTBEntities5();
+
         public object forgetPassword(string phoneNumber)
         {
             if (IsExistPhoneNumner(phoneNumber))
@@ -24,42 +25,34 @@ namespace umeAPI.Data
 
         }
         // =======================
-        //hàm này để trả về người dùng khi người dùng truyền vào SĐT và mật khẩu{(đằn nhập)
+        //hàm này để trả về người dùng khi người dùng truyền vào SĐT và mật khẩu{(đằn nhập bằng số điện thoại)
         //========================
         public object getUser(string phoneNumber, string passWord)
         {
-            
+                SqlParameter phone = new SqlParameter("@phone", phoneNumber);
+                SqlParameter pass = new SqlParameter("@pass", passWord);
 
-            SqlParameter phone = new SqlParameter("@phone", phoneNumber);
-            SqlParameter pass = new SqlParameter("@pass", passWord);
-
-            SqlParameter[] sqlParameters = new SqlParameter[] { phone, pass };
-            var usersinfo = data.UserAccounts.SqlQuery(" select * from UserAccount where phoneNumber = @phone and password =@pass", sqlParameters).FirstOrDefault();
-
-            if (!IsExistPhoneNumner(phoneNumber))
-            {
-                return "số điện thoại chưa đă ký";
-            }
-            else
-            {
-               
+                SqlParameter[] sqlParameters = new SqlParameter[] { phone, pass };
+                var usersinfo = data.UserAccounts.SqlQuery(" select * from UserAccount where phoneNumber = @phone and password =@pass", sqlParameters).FirstOrDefault();
                 return usersinfo;
-            }
+            
         }
-        
-        // =======================
-        //hàm này để kiểm tra tài khoàn này có tồn tại không
+        //hàm này để trả về người dùng khi người dùng truyền vào SĐT và mật khẩu{(đằn nhập bằng số điện thoại)
         //========================
-        bool IsExistPhoneNumner(string phoneNumber)
+        public object getUserByEmail(string Email, string password)
         {
-            SqlParameter phone = new SqlParameter("@phone", phoneNumber);
-            var userPhone = data.UserAccounts.SqlQuery("select * from UserAccount where phoneNumber = @phone", phone).FirstOrDefault();
-            if (userPhone == null)
-            {
-                return false;
-            }
-            else return true;
+
+
+            SqlParameter email = new SqlParameter("@phone", Email);
+            SqlParameter pass = new SqlParameter("@pass", password);
+
+            SqlParameter[] sqlParameters = new SqlParameter[] { email, pass };
+            var usersinfo = data.UserAccounts.SqlQuery(" select * from UserAccount where email = @email and password =@pass", sqlParameters).FirstOrDefault();
+
+            return usersinfo;
+            
         }
+
         // =======================
         //hàm này để thêm tài khoản
         //========================
@@ -74,18 +67,23 @@ namespace umeAPI.Data
             SqlParameter userName = new SqlParameter("@userName", userAccount.userName);
 
             SqlParameter[] sqlParameters = new SqlParameter[] { phoneNumber, createOn, updateOn, sex, password, email, userName };
-            if (!IsExistPhoneNumner(userAccount.phoneNumber))
+            if (!IsExistEmail(userAccount.email))
             {
-                int isInsert = data.Database.
-                    ExecuteSqlCommand
-                    ("insert into UserAccount (phoneNumber,createOn,updateOn,sex,password,emai,userName) values ( @phoneNumber,@createOn,@updateOn,@sex,@password,@email,@userName)", sqlParameters);
-                if (isInsert == 1)
-                    return "success";
-                else return "fail";
+                if (!IsExistPhoneNumner(userAccount.phoneNumber))
+                {
+                    int isInsert = data.Database.
+                        ExecuteSqlCommand
+                        ("insert into UserAccount (phoneNumber,createOn,updateOn,sex,password,email,userName) values ( @phoneNumber,@createOn,@updateOn,@sex,@password,@email,@userName)", sqlParameters);
+                    if (isInsert == 1)// tạo thành công
+                        return "success";
+                    else return "Tạo tài khoản thất bại";
+                }
+                else
+                {
+                    return "số điện thoại đã có người đăng ký";
+                }
             }
-            else {
-                return "số điện thoại đã có người đăng ký";
-            }
+            else return "Email đã có người đăng ký";
         }
         // tìm người dùng qua số điện thoại
         public UserAccount SerchUserByPhoneNumber(string phoneNumber)
@@ -144,20 +142,26 @@ namespace umeAPI.Data
             else return "failt";
         }
 
-        public object getcode(int id)
+        public bool IsExistPhoneNumner(string phoneNumber)
         {
-            if (id!=null) {
-                SqlParameter phone = new SqlParameter("@phone", id);
-                var userPhone = data.UserAccounts.SqlQuery("select code from UserAccount where idUser = @phone", phone).FirstOrDefault();
-                if (userPhone != null)
-                {
-                    return userPhone;
-                }
-                else return
-                        userPhone;
+            SqlParameter phone = new SqlParameter("@phone", phoneNumber);
+            var userPhone = data.UserAccounts.SqlQuery("select * from UserAccount where phoneNumber = @phone", phone).FirstOrDefault();
+            if (userPhone == null)
+            {
+                return false;
             }
-            return null;
+            else return true;
         }
 
+        public bool IsExistEmail(string Email)
+        {
+            SqlParameter email = new SqlParameter("@email", Email);
+            var userPhone = data.UserAccounts.SqlQuery("select * from UserAccount where email = @email", email).FirstOrDefault();
+            if (userPhone == null)
+            {
+                return false;
+            }
+            else return true;
+        }
     }
 }
