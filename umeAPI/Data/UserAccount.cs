@@ -24,8 +24,8 @@ namespace umeAPI.Data
         public Nullable<bool> sex { get; set; }
         public Nullable<System.DateTime> birthDay { get; set; }
         public string email { get; set; }
-        public string userName { get; set; }
         public string urlAvarta { get; set; }
+        public string userName { get; set; }
         public Nullable<int> code { get; set; }
     }
 }

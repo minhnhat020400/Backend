@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ChatUmeDTBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ChatUmeDTBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="idComment" />
@@ -138,7 +138,8 @@
           <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserNotification" EntityType="Self.UserNotification" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChatUmeDTBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -247,8 +248,8 @@
           <Property Name="sex" Type="Boolean" />
           <Property Name="birthDay" Type="DateTime" Precision="0" />
           <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="userName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="urlAvarta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="userName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="code" Type="Int32" />
         </EntityType>
         <EntityType Name="UserNotification">
@@ -263,7 +264,7 @@
           <Property Name="idUser" Type="Int32" Nullable="false" />
           <Property Name="idPerson" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="ChatUmeDTBEntities5" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ChatUmeDTBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Comments" EntityType="Self.Comment" />
           <EntitySet Name="Friends" EntityType="Self.Friend" />
           <EntitySet Name="GroupChats" EntityType="Self.GroupChat" />
@@ -280,7 +281,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ChatUmeDTBModelStoreContainer" CdmEntityContainer="ChatUmeDTBEntities5">
+        <EntityContainerMapping StorageEntityContainer="ChatUmeDTBModelStoreContainer" CdmEntityContainer="ChatUmeDTBEntities">
           <EntitySetMapping Name="Comments">
             <EntityTypeMapping TypeName="ChatUmeDTBModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
@@ -380,8 +381,6 @@
           <EntitySetMapping Name="UserAccounts">
             <EntityTypeMapping TypeName="ChatUmeDTBModel.UserAccount">
               <MappingFragment StoreEntitySet="UserAccount">
-                <ScalarProperty Name="code" ColumnName="code" />
-                <ScalarProperty Name="urlAvarta" ColumnName="urlAvarta" />
                 <ScalarProperty Name="idUser" ColumnName="idUser" />
                 <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
                 <ScalarProperty Name="password" ColumnName="password" />
@@ -392,7 +391,9 @@
                 <ScalarProperty Name="sex" ColumnName="sex" />
                 <ScalarProperty Name="birthDay" ColumnName="birthDay" />
                 <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="urlAvarta" ColumnName="urlAvarta" />
                 <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="code" ColumnName="code" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -424,7 +425,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

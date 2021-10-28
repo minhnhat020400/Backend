@@ -104,19 +104,10 @@
     <Property Name="isOnline" Type="bit" />
     <Property Name="sex" Type="bit" />
     <Property Name="birthDay" Type="date" />
-    <Property Name="email" Type="varchar" MaxLength="2000" />
+    <Property Name="email" Type="varchar(max)" />
+    <Property Name="urlAvarta" Type="varchar(max)" />
     <Property Name="userName" Type="nvarchar" MaxLength="200" />
-  </EntityType>
-  <EntityType Name="UserAvarta">
-    <Key>
-      <PropertyRef Name="idAvarta" />
-    </Key>
-    <Property Name="idAvarta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="url" Type="varchar" MaxLength="200" />
-    <Property Name="createOn" Type="datetime" />
-    <Property Name="updateOn" Type="datetime" />
-    <Property Name="isActive" Type="bit" />
-    <Property Name="idUser" Type="int" Nullable="false" />
+    <Property Name="code" Type="int" />
   </EntityType>
   <EntityType Name="UserNotification">
     <Key>
@@ -140,7 +131,6 @@
     <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Poster" EntityType="Self.Poster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserAccount" EntityType="Self.UserAccount" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="UserAvarta" EntityType="Self.UserAvarta" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserNotification" EntityType="Self.UserNotification" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>
