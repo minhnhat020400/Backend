@@ -13,10 +13,10 @@ namespace umeAPI.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ChatUmeDTBEntities5 : DbContext
+    public partial class ChatUmeDTBEntities : DbContext
     {
-        public ChatUmeDTBEntities5()
-            : base("name=ChatUmeDTBEntities5")
+        public ChatUmeDTBEntities()
+            : base("name=ChatUmeDTBEntities")
         {
         }
     

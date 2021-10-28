@@ -10,7 +10,7 @@ namespace umeAPI.Service
 {
     public class friendsService : friendsRepo
     {
-        ChatUmeDTBEntities5 data = new ChatUmeDTBEntities5();
+        ChatUmeDTBEntities data = new ChatUmeDTBEntities();
         UserService service= new UserService();
 
         public object addnewFriend(int idUser, int idFriend)
