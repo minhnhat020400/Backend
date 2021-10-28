@@ -44,9 +44,12 @@ namespace umeAPI.Service
             throw new NotImplementedException();
         }
 
-        public object[] showlistfriends(int idUser)
-        {
-            throw new NotImplementedException();
+        public object showlistfriends(int idUser)
+        {      
+            SqlParameter id = new SqlParameter("@id", idUser);
+            var result = data.UserAccounts.SqlQuery("select c.* from UserAccount c, Friends f where c.idUser = f.idFriend and f.idUser=@id", id).ToList<UserAccount>();
+
+            return result;
         }
 
         public object updatefriends(int idUser, string nickname)

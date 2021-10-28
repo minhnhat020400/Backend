@@ -66,7 +66,7 @@ namespace umeAPI.Controllers.API
         // API khi đăng nhập bằng Email
         [System.Web.Mvc.Route("api/Login/getuserByEmail")]
         [System.Web.Mvc.HttpGet]
-        public  object GetUserbyEmail(string email, string password)
+        public object GetUserbyEmail(string email, string password)
         {
             if (checking.isEmail(email))
             {
@@ -112,10 +112,10 @@ namespace umeAPI.Controllers.API
             if (checking.checkPhone(userAccount.phoneNumber) && checking.checkPass(userAccount.password))
             {
                 var result = Uservice.InsertNewUser(userAccount);
-                    return Json(new 
-                    {
-                        message = result
-                    });
+                return Json(new
+                {
+                    message = result
+                });
             }
             else
             {
@@ -129,9 +129,9 @@ namespace umeAPI.Controllers.API
         //api quên mật khẩu
         [System.Web.Mvc.Route("api/Login/forgetpassword")]
         [System.Web.Mvc.HttpPost]
-        public object PostForgetPassword(string phoneNumber)
+        public string PostForgetPassword(string phoneNumber)
         {
-            return Json(new { password = Uservice.forgetPassword(phoneNumber) });
+            return (string)Uservice.forgetPassword(phoneNumber);
         }
 
 
@@ -143,16 +143,14 @@ namespace umeAPI.Controllers.API
             try
             {
                 return Json(new {
-                    message =  Uservice.updateAvatar(idUser, urlAvarta)
+                    message = Uservice.updateAvatar(idUser, urlAvarta)
                 });
             }
             catch (Exception)
             {
 
-                return Json(new {message= "failt" }) ;
+                return Json(new { message = "failt" });
             }
         }
-
-
     }
 }
