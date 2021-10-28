@@ -14,14 +14,23 @@ namespace umeAPI.Data
 
         public object forgetPassword(string phoneNumber)
         {
-            if (IsExistPhoneNumner(phoneNumber))
+            try
             {
-                SqlParameter phone = new SqlParameter("@phone", phoneNumber);
-                string userPass = data.Database.SqlQuery<string>("select UserAccount.password from UserAccount where phoneNumber = @phone",
-                    phone).FirstOrDefault();
-                return userPass;
+                if (IsExistPhoneNumner(phoneNumber))
+                {
+                    SqlParameter phone = new SqlParameter("@phone", phoneNumber);
+                    string userPass = data.Database.SqlQuery<string>("select UserAccount.password from UserAccount where phoneNumber = @phone",
+                        phone).FirstOrDefault();
+                    return userPass;
+                }
+                else return "số điện thoại chưa đă ký";
             }
-            else return "số điện thoại chưa đă ký";
+            catch (Exception)
+            {
+
+                return "failt";
+            }
+            
 
         }
         // =======================
@@ -163,5 +172,20 @@ namespace umeAPI.Data
             }
             else return true;
         }
+
+        public object getUserByName(string Name)
+        {
+            SqlParameter name = new SqlParameter("@name", Name);
+            var usersinfo = data.UserAccounts.SqlQuery(" select * from UserAccount where phoneNumber= @name", name).FirstOrDefault();
+            return usersinfo;
+        }
+
+        public object getUserByPhone(string phoneNumber)
+        {
+            SqlParameter phone = new SqlParameter("@phone", phoneNumber);
+            var usersinfo = data.UserAccounts.SqlQuery(" select * from UserAccount where phoneNumber= @phone", phone).FirstOrDefault();
+            return usersinfo;
+        }
+
     }
 }

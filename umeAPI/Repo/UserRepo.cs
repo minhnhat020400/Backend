@@ -18,6 +18,9 @@ namespace umeAPI.Repo
         string updateAvatar(int id, string url);
         bool IsExistPhoneNumner(string phoneNumber);
         bool IsExistEmail(string Email);
+        object getUserByName(string name);
+        object getUserByPhone(string phoneNumber);
+       
 
     }
 }
